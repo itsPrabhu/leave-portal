@@ -15,10 +15,19 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated.settings'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated.reports'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated.profile'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated.notifications'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
+import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated.analytics'
 import { Route as AuthenticatedLeavesIndexRouteImport } from './routes/_authenticated.leaves.index'
+import { Route as AuthenticatedParentOverviewRouteImport } from './routes/_authenticated.parent.overview'
 import { Route as AuthenticatedLeavesNewRouteImport } from './routes/_authenticated.leaves.new'
 import { Route as AuthenticatedLeavesIdRouteImport } from './routes/_authenticated.leaves.$id'
+import { Route as AuthenticatedFacultyRequestsRouteImport } from './routes/_authenticated.faculty.requests'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated.admin.users'
+import { Route as AuthenticatedAdminDepartmentsRouteImport } from './routes/_authenticated.admin.departments'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -49,15 +58,47 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedLeavesIndexRoute =
   AuthenticatedLeavesIndexRouteImport.update({
     id: '/leaves/',
     path: '/leaves/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedParentOverviewRoute =
+  AuthenticatedParentOverviewRouteImport.update({
+    id: '/parent/overview',
+    path: '/parent/overview',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedLeavesNewRoute = AuthenticatedLeavesNewRouteImport.update({
@@ -70,6 +111,23 @@ const AuthenticatedLeavesIdRoute = AuthenticatedLeavesIdRouteImport.update({
   path: '/leaves/$id',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedFacultyRequestsRoute =
+  AuthenticatedFacultyRequestsRouteImport.update({
+    id: '/faculty/requests',
+    path: '/faculty/requests',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminDepartmentsRoute =
+  AuthenticatedAdminDepartmentsRouteImport.update({
+    id: '/admin/departments',
+    path: '/admin/departments',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,9 +135,18 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/admin/departments': typeof AuthenticatedAdminDepartmentsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/faculty/requests': typeof AuthenticatedFacultyRequestsRoute
   '/leaves/$id': typeof AuthenticatedLeavesIdRoute
   '/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/parent/overview': typeof AuthenticatedParentOverviewRoute
   '/leaves/': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -88,9 +155,18 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/admin/departments': typeof AuthenticatedAdminDepartmentsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/faculty/requests': typeof AuthenticatedFacultyRequestsRoute
   '/leaves/$id': typeof AuthenticatedLeavesIdRoute
   '/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/parent/overview': typeof AuthenticatedParentOverviewRoute
   '/leaves': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRoutesById {
@@ -101,9 +177,18 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/admin/departments': typeof AuthenticatedAdminDepartmentsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/_authenticated/faculty/requests': typeof AuthenticatedFacultyRequestsRoute
   '/_authenticated/leaves/$id': typeof AuthenticatedLeavesIdRoute
   '/_authenticated/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/_authenticated/parent/overview': typeof AuthenticatedParentOverviewRoute
   '/_authenticated/leaves/': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRouteTypes {
@@ -114,9 +199,18 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/reset-password'
+    | '/analytics'
     | '/dashboard'
+    | '/notifications'
+    | '/profile'
+    | '/reports'
+    | '/settings'
+    | '/admin/departments'
+    | '/admin/users'
+    | '/faculty/requests'
     | '/leaves/$id'
     | '/leaves/new'
+    | '/parent/overview'
     | '/leaves/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -125,9 +219,18 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/reset-password'
+    | '/analytics'
     | '/dashboard'
+    | '/notifications'
+    | '/profile'
+    | '/reports'
+    | '/settings'
+    | '/admin/departments'
+    | '/admin/users'
+    | '/faculty/requests'
     | '/leaves/$id'
     | '/leaves/new'
+    | '/parent/overview'
     | '/leaves'
   id:
     | '__root__'
@@ -137,9 +240,18 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/reset-password'
+    | '/_authenticated/analytics'
     | '/_authenticated/dashboard'
+    | '/_authenticated/notifications'
+    | '/_authenticated/profile'
+    | '/_authenticated/reports'
+    | '/_authenticated/settings'
+    | '/_authenticated/admin/departments'
+    | '/_authenticated/admin/users'
+    | '/_authenticated/faculty/requests'
     | '/_authenticated/leaves/$id'
     | '/_authenticated/leaves/new'
+    | '/_authenticated/parent/overview'
     | '/_authenticated/leaves/'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +308,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -203,11 +343,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/analytics': {
+      id: '/_authenticated/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/leaves/': {
       id: '/_authenticated/leaves/'
       path: '/leaves'
       fullPath: '/leaves/'
       preLoaderRoute: typeof AuthenticatedLeavesIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/parent/overview': {
+      id: '/_authenticated/parent/overview'
+      path: '/parent/overview'
+      fullPath: '/parent/overview'
+      preLoaderRoute: typeof AuthenticatedParentOverviewRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/leaves/new': {
@@ -224,20 +378,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLeavesIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/faculty/requests': {
+      id: '/_authenticated/faculty/requests'
+      path: '/faculty/requests'
+      fullPath: '/faculty/requests'
+      preLoaderRoute: typeof AuthenticatedFacultyRequestsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/departments': {
+      id: '/_authenticated/admin/departments'
+      path: '/admin/departments'
+      fullPath: '/admin/departments'
+      preLoaderRoute: typeof AuthenticatedAdminDepartmentsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedAdminDepartmentsRoute: typeof AuthenticatedAdminDepartmentsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedFacultyRequestsRoute: typeof AuthenticatedFacultyRequestsRoute
   AuthenticatedLeavesIdRoute: typeof AuthenticatedLeavesIdRoute
   AuthenticatedLeavesNewRoute: typeof AuthenticatedLeavesNewRoute
+  AuthenticatedParentOverviewRoute: typeof AuthenticatedParentOverviewRoute
   AuthenticatedLeavesIndexRoute: typeof AuthenticatedLeavesIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedAdminDepartmentsRoute: AuthenticatedAdminDepartmentsRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedFacultyRequestsRoute: AuthenticatedFacultyRequestsRoute,
   AuthenticatedLeavesIdRoute: AuthenticatedLeavesIdRoute,
   AuthenticatedLeavesNewRoute: AuthenticatedLeavesNewRoute,
+  AuthenticatedParentOverviewRoute: AuthenticatedParentOverviewRoute,
   AuthenticatedLeavesIndexRoute: AuthenticatedLeavesIndexRoute,
 }
 
