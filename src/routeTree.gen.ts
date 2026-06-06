@@ -16,6 +16,9 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
+import { Route as AuthenticatedLeavesIndexRouteImport } from './routes/_authenticated.leaves.index'
+import { Route as AuthenticatedLeavesNewRouteImport } from './routes/_authenticated.leaves.new'
+import { Route as AuthenticatedLeavesIdRouteImport } from './routes/_authenticated.leaves.$id'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -51,6 +54,22 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedLeavesIndexRoute =
+  AuthenticatedLeavesIndexRouteImport.update({
+    id: '/leaves/',
+    path: '/leaves/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedLeavesNewRoute = AuthenticatedLeavesNewRouteImport.update({
+  id: '/leaves/new',
+  path: '/leaves/new',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedLeavesIdRoute = AuthenticatedLeavesIdRouteImport.update({
+  id: '/leaves/$id',
+  path: '/leaves/$id',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,6 +78,9 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/leaves/$id': typeof AuthenticatedLeavesIdRoute
+  '/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/leaves/': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -67,6 +89,9 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/leaves/$id': typeof AuthenticatedLeavesIdRoute
+  '/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/leaves': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,6 +102,9 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/leaves/$id': typeof AuthenticatedLeavesIdRoute
+  '/_authenticated/leaves/new': typeof AuthenticatedLeavesNewRoute
+  '/_authenticated/leaves/': typeof AuthenticatedLeavesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,6 +115,9 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/dashboard'
+    | '/leaves/$id'
+    | '/leaves/new'
+    | '/leaves/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -95,6 +126,9 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/dashboard'
+    | '/leaves/$id'
+    | '/leaves/new'
+    | '/leaves'
   id:
     | '__root__'
     | '/'
@@ -104,6 +138,9 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/leaves/$id'
+    | '/_authenticated/leaves/new'
+    | '/_authenticated/leaves/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,15 +203,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/leaves/': {
+      id: '/_authenticated/leaves/'
+      path: '/leaves'
+      fullPath: '/leaves/'
+      preLoaderRoute: typeof AuthenticatedLeavesIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/leaves/new': {
+      id: '/_authenticated/leaves/new'
+      path: '/leaves/new'
+      fullPath: '/leaves/new'
+      preLoaderRoute: typeof AuthenticatedLeavesNewRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/leaves/$id': {
+      id: '/_authenticated/leaves/$id'
+      path: '/leaves/$id'
+      fullPath: '/leaves/$id'
+      preLoaderRoute: typeof AuthenticatedLeavesIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedLeavesIdRoute: typeof AuthenticatedLeavesIdRoute
+  AuthenticatedLeavesNewRoute: typeof AuthenticatedLeavesNewRoute
+  AuthenticatedLeavesIndexRoute: typeof AuthenticatedLeavesIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedLeavesIdRoute: AuthenticatedLeavesIdRoute,
+  AuthenticatedLeavesNewRoute: AuthenticatedLeavesNewRoute,
+  AuthenticatedLeavesIndexRoute: AuthenticatedLeavesIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
