@@ -33,6 +33,7 @@ function NewLeavePage() {
       ...form,
       fromDate: new Date(form.fromDate).toISOString(),
       toDate: new Date(form.toDate).toISOString(),
+      documents: form.documents.map(({ dataUrl: _dataUrl, ...document }) => document),
     }),
     onSuccess: () => {
       toast.success("Leave request submitted");
