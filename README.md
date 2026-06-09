@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SmartLeave AI — Intelligent Student Absence Management System
 
 Production-ready frontend (TanStack Start + React 19 + TypeScript + Tailwind v4) for managing student leave across **Student**, **Faculty**, **Parent**, and **Admin** roles. Ships with a complete in-browser mock backend so every screen works out of the box — flip a single env var to point at your real **Express + MySQL** API.
@@ -136,3 +137,6 @@ Set the same `VITE_API_BASE_URL` and `VITE_USE_MOCK_API` env vars in your hostin
 ## License
 
 MIT — use it freely for your college / hackathon project.
+=======
+# leave-portal
+>>>>>>> 871e123bf709047f79652f998892f4acb83523c3
